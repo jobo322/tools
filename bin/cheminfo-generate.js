@@ -5,8 +5,8 @@
 const program = require('commander');
 const child_process = require('mz/child_process');
 const co = require('co');
-const inquirer = require('inquirer');
 const yeoman = require('yeoman-environment');
+const generator = require.resolve('generator-cheminfo');
 
 let org;
 
@@ -35,7 +35,7 @@ co(function *() {
 
     // Yeoman generators
     const env = yeoman.createEnv();
-    env.register(require.resolve('generator-cheminfo'), 'cheminfo:app');
+    env.register(generator, 'cheminfo:app');
     env.run('cheminfo:app', console.error);
 
 }).catch(console.error);
